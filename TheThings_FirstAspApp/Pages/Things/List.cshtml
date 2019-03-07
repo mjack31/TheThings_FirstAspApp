@@ -1,0 +1,25 @@
+﻿@* Dyrektywa która mowi frameworkowi ze to page *@
+@page
+
+@* Dyrektywa która definiuje model danego page'a *@
+@model TheThings_FirstAspApp.Pages.Things.ListModel
+
+@* Miejsce na definicje i inicjalizacje *@
+@{
+    ViewData["Title"] = "List";
+}
+
+<h2>List of Things</h2>
+<div>
+    <table class="table">
+        @foreach (var thing in Model.Things)
+        {
+        <tr>
+            <td>@thing.Name</td>
+            <td>@thing.Location</td>
+            <td>@thing.Type</td>
+        </tr>
+       }
+    </table>
+</div>
+
