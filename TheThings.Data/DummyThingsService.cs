@@ -24,9 +24,9 @@ namespace TheThings.Data
             };
         }
 
-        public List<Thing> GetAll()
+        public IEnumerable<Thing> GetByName(string name = null)
         {
-            return _things.OrderBy(t => t.Name).ToList();
+            return _things.OrderBy(t => t.Name).Where(t => string.IsNullOrEmpty(name) || t.Name.Contains(name, StringComparison.OrdinalIgnoreCase)).Select(t => t);
         }
     }
 }

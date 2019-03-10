@@ -7,6 +7,6 @@ namespace TheThings.Data.Interfaces
 {
     public interface IThingsRepository
     {
-        List<Thing> GetAll();
+        IEnumerable<Thing> GetByName(string name);
     }
 }
