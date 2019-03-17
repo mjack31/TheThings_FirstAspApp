@@ -8,5 +8,6 @@ namespace TheThings.Data.Interfaces
     public interface IThingsRepository
     {
         IEnumerable<Thing> GetByName(string name);
+        Thing GetById(int id);
     }
 }

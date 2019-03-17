@@ -1,0 +1,16 @@
+﻿@* Dodany identyfikator dzieki ktoremu wartość route nadana przez rodzica przekazywana jest jako koncówka URL. Ograniczenie :int jest opcjonalne *@
+@page "{thingId:int}"
+
+@model TheThings_FirstAspApp.Pages.Things.DetailModel
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h2>Detail</h2>
+<div>
+    <div>Id: @Model.Thing.Id</div>
+    <div>Name: @Model.Thing.Name</div>
+    <div>Location: @Model.Thing.Location</div>
+    <div>Type: @Model.Thing.Type</div>
+</div>

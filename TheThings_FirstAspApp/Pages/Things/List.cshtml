@@ -1,19 +1,20 @@
-﻿@* Dyrektywa która mowi frameworkowi ze to page *@
-@page
-@* Dyrektywa która definiuje model danego page'a *@
+﻿@page
 @model TheThings_FirstAspApp.Pages.Things.ListModel
-@* Miejsce na definicje i inicjalizacje *@
 @{
     ViewData["Title"] = "List";
 }
 
 <h2>List of Things</h2>
-<form method="get" class="input-group">
-    <input type="search" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
-           asp-for="SearchTerm">
-    <span class="input-group-btn">
-        <button class="btn btn-outline-secondary">Search</button>
-    </span>
+<form method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="search" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
+                   asp-for="SearchTerm">
+            <span class="input-group-btn">
+                <button class="btn btn-outline-secondary">Search</button>
+            </span>
+        </div>
+    </div>
 </form>
 
 <div>
@@ -21,7 +22,11 @@
         @foreach (var thing in Model.Things)
         {
             <tr>
-                <td>@thing.Name</td>
+                <td>
+                    @* Domyślnie asp-route przekazuje attrybut routa jako query string i do metody OnGET(). W momencie kiedy w otwieranym page'u w dyrektywie @page dodamy wypisany tutaj identyfikator 
+                        tj. thingId to wartość jest przekazywana jako końcówka URL oraz do metody OnGET() *@
+                    <a asp-page="./Detail" asp-route-thingId="@thing.Id">@thing.Name</a>
+                </td>
                 <td>@thing.Location</td>
                 <td>@thing.Type</td>
             </tr>

@@ -28,5 +28,10 @@ namespace TheThings.Data
         {
             return _things.OrderBy(t => t.Name).Where(t => string.IsNullOrEmpty(name) || t.Name.Contains(name, StringComparison.OrdinalIgnoreCase)).Select(t => t);
         }
+
+        public Thing GetById(int id)
+        {
+            return _things.SingleOrDefault(t => id == t.Id);
+        }
     }
 }
