@@ -8,7 +8,7 @@
 <form method="get">
     <div class="form-group">
         <div class="input-group">
-            <input type="search" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
+            <input type="search" class="form-control" placeholder="Search..." aria-label="Search..."
                    asp-for="SearchTerm">
             <span class="input-group-btn">
                 <button class="btn btn-outline-secondary">Search</button>
@@ -33,6 +33,10 @@
         }
     </table>
 </div>
+<div>
+    <a class="btn btn-primary">Add thing!</a>
+</div>
+<br />
 <div>
     @Model.ConfigMsg
 </div>

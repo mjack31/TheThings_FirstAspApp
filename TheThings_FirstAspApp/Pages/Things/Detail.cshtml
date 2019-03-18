@@ -14,3 +14,7 @@
     <div>Location: @Model.Thing.Location</div>
     <div>Type: @Model.Thing.Type</div>
 </div>
+<br />
+<div>
+    <a class="btn btn-success" asp-page="./Edit" asp-route-thingId="@Model.Thing.Id">Edit thing!</a>
+</div>

@@ -1,0 +1,26 @@
+﻿@page "{thingId:int}"
+@model TheThings_FirstAspApp.Pages.Things.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+<form method="post">
+    <input type="hidden" asp-for="Thing.Id" />
+    <div class="form-group">
+        <label asp-for="Thing.Name"></label>
+        <input class="form-control" asp-for="Thing.Name" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Thing.Location"></label>
+        <input class="form-control" asp-for="Thing.Location" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Thing.Type"></label>
+        <select class="form-control" asp-for="Thing.Type" asp-items="@Model.Types">
+            @* W przypadku znacznika select użyćtrzeba wersji z znacznikiem poczatkowym i końcowym inaczej nie dziala (nie używać "/>") *@
+        </select>
+    </div>
+    <button class="btn btn-danger">Save changes</button>
+</form>
+
