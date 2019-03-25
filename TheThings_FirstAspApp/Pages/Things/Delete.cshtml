@@ -1,0 +1,16 @@
+﻿@page  "{thingId:int}"
+@model TheThings_FirstAspApp.Pages.Things.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+<div>
+    Do you really want to delete @Model.Thing.Name?
+    <form method="post">
+        <button class="btn btn-danger">Yes</button>
+    </form>
+    <br />
+    <a class="btn btn-default" asp-page="./List">No</a>
+</div>
+

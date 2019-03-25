@@ -26,10 +26,47 @@ namespace TheThings_FirstAspApp.Pages.Things
             this.htmlHelper = htmlHelper;
         }
 
-        public void OnGet(int thingId)
+        public IActionResult OnGet(int? thingId)
         {
             Types = htmlHelper.GetEnumSelectList<ThingType>();
-            Thing = thingsRepo.GetById(thingId);
+            if (thingId.HasValue)
+            {
+                Thing = thingsRepo.GetById(thingId.Value);
+            }
+            else
+            {
+                Thing = new Thing();
+            }
+            
+            if(Thing == null)
+            {
+                return RedirectToPage("./NotFound");
+            }
+            return Page();
+        }
+
+        public IActionResult OnPost()
+        {
+            Types = htmlHelper.GetEnumSelectList<ThingType>();
+            if (ModelState.IsValid)
+            {
+                if(Thing.Id == 0)
+                {
+                    thingsRepo.Add(Thing);
+                    TempData["Message"] = "Thing added";
+                }
+                else
+                {
+                    thingsRepo.Update(Thing);
+                    TempData["Message"] = "Thing updated";
+                }
+                thingsRepo.SaveChanges();
+                return RedirectToPage("./Detail", new { thingId = Thing.Id });
+            }
+            else
+            {
+                return Page();
+            }
         }
     }
 }

@@ -33,5 +33,33 @@ namespace TheThings.Data
         {
             return _things.SingleOrDefault(t => id == t.Id);
         }
+
+        public Thing Update(Thing updatedRestaurent)
+        {
+            var restaurant = _things.SingleOrDefault(r => r.Id == updatedRestaurent.Id);
+            restaurant.Name = updatedRestaurent.Name;
+            restaurant.Location = updatedRestaurent.Location;
+            restaurant.Type = updatedRestaurent.Type;
+            return restaurant;
+        }
+
+        public int SaveChanges()
+        {
+            return 0;
+        }
+
+        public Thing Add(Thing thingToAdd)
+        {
+            _things.Add(thingToAdd);
+            thingToAdd.Id = _things.Max(t => t.Id) + 1;
+            return thingToAdd;
+        }
+
+        public Thing Delete(int idToDelete)
+        {
+            var thingToDelete = _things.FirstOrDefault(t => t.Id == idToDelete);
+            _things.Remove(thingToDelete);
+            return thingToDelete;
+        }
     }
 }

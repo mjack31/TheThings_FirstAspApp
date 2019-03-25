@@ -8,6 +8,18 @@
 }
 
 <h2>Detail</h2>
+
+@* Flash msg można zbindować recznie, jak niżej lub za pomocą model bindingu
+    @if (TempData["Message"] != null)
+    {
+     <div class="alert alert-danger">@TempData["msg"]</div>
+    }*@
+
+@if (Model.Message != null)
+{
+    <div class="alert alert-danger">@Model.Message</div>
+}
+
 <div>
     <div>Id: @Model.Thing.Id</div>
     <div>Name: @Model.Thing.Name</div>
@@ -17,4 +29,5 @@
 <br />
 <div>
     <a class="btn btn-success" asp-page="./Edit" asp-route-thingId="@Model.Thing.Id">Edit thing!</a>
+    <a class="btn btn-danger" asp-page="./Delete" asp-route-thingId="@Model.Thing.Id">Delete thing!</a>
 </div>

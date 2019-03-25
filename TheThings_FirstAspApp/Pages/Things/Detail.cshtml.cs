@@ -13,6 +13,9 @@ namespace TheThings_FirstAspApp.Pages.Things
     {
         private readonly IThingsRepository thingsRepo;
 
+        [TempData]
+        public string Message { get; set; }
+
         public DetailModel(IThingsRepository thingsRepo)
         {
             this.thingsRepo = thingsRepo;

@@ -9,5 +9,9 @@ namespace TheThings.Data.Interfaces
     {
         IEnumerable<Thing> GetByName(string name);
         Thing GetById(int id);
+        Thing Update(Thing updatedRestaurent);
+        Thing Add(Thing thingToAdd);
+        Thing Delete(int idToDelete);
+        int SaveChanges();
     }
 }

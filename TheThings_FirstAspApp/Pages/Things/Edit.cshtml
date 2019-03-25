@@ -1,4 +1,4 @@
-﻿@page "{thingId:int}"
+﻿@page "{thingId:int?}"
 @model TheThings_FirstAspApp.Pages.Things.EditModel
 @{
     ViewData["Title"] = "Edit";
@@ -10,16 +10,19 @@
     <div class="form-group">
         <label asp-for="Thing.Name"></label>
         <input class="form-control" asp-for="Thing.Name" />
+        <span class="text-danger" asp-validation-for="Thing.Name"></span>
     </div>
     <div class="form-group">
         <label asp-for="Thing.Location"></label>
         <input class="form-control" asp-for="Thing.Location" />
+        <span class="text-danger" asp-validation-for="Thing.Location"></span>
     </div>
     <div class="form-group">
         <label asp-for="Thing.Type"></label>
         <select class="form-control" asp-for="Thing.Type" asp-items="@Model.Types">
-            @* W przypadku znacznika select użyćtrzeba wersji z znacznikiem poczatkowym i końcowym inaczej nie dziala (nie używać "/>") *@
+            @* W przypadku znacznika select użyć trzeba wersji z znacznikiem poczatkowym i końcowym inaczej nie dziala (nie używać "/>") *@
         </select>
+        <span class="text-danger" asp-validation-for="Thing.Type"></span>
     </div>
     <button class="btn btn-danger">Save changes</button>
 </form>
