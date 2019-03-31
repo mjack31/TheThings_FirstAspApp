@@ -1,7 +1,8 @@
-﻿{
+﻿//Zmiana ASPNETCORE_ENVIRONMENT na Production umożliwia odpalenie wersji produkcyjnej aplikacji 
+{
   "iisSettings": {
-    "windowsAuthentication": false, 
-    "anonymousAuthentication": true, 
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
     "iisExpress": {
       "applicationUrl": "http://localhost:57965",
       "sslPort": 44326

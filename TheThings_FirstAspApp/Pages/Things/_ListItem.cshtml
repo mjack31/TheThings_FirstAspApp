@@ -1,0 +1,20 @@
+﻿@*
+    Jest to partial view. Partial raczej nie mosiada swojego modelu (PageModel) ale jest taka możliwość model jest przekazywany podczas wywołania danego partiala
+*@
+
+@using TheThings.Models
+@model Thing
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>
+            @* Domyślnie asp-route przekazuje attrybut routa jako query string i do metody OnGET(). W momencie kiedy w otwieranym page'u w dyrektywie @page dodamy wypisany tutaj identyfikator
+               tj. thingId to wartość jest przekazywana jako końcówka URL oraz do metody OnGET() *@
+            <a asp-page="./Detail" asp-route-thingId="@Model.Id">@Model.Name</a>
+        </h4>
+    </div>
+    <div class="panel-body">
+        <p>Location: @Model.Location</p>
+        <p>Type: @Model.Type</p>
+    </div>
+</div>

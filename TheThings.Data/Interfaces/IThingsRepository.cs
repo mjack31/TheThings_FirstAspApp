@@ -12,6 +12,7 @@ namespace TheThings.Data.Interfaces
         Thing Update(Thing updatedRestaurent);
         Thing Add(Thing thingToAdd);
         Thing Delete(int idToDelete);
+        int CountThings();
         int SaveChanges();
     }
 }

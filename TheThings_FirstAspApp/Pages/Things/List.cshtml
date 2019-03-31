@@ -21,15 +21,7 @@
     <table class="table">
         @foreach (var thing in Model.Things)
         {
-            <tr>
-                <td>
-                    @* Domyślnie asp-route przekazuje attrybut routa jako query string i do metody OnGET(). W momencie kiedy w otwieranym page'u w dyrektywie @page dodamy wypisany tutaj identyfikator 
-                        tj. thingId to wartość jest przekazywana jako końcówka URL oraz do metody OnGET() *@
-                    <a asp-page="./Detail" asp-route-thingId="@thing.Id">@thing.Name</a>
-                </td>
-                <td>@thing.Location</td>
-                <td>@thing.Type</td>
-            </tr>
+            <partial name="_ListItem" model="thing" />
         }
     </table>
 </div>

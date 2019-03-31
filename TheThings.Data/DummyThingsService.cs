@@ -61,5 +61,10 @@ namespace TheThings.Data
             _things.Remove(thingToDelete);
             return thingToDelete;
         }
+
+        public int CountThings()
+        {
+            return _things.Count;
+        }
     }
 }
