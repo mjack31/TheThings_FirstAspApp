@@ -28,8 +28,9 @@
 </form>
 
 @* W _Layout na końcu odpalana jest sekcja skryptów JS (@RenderSection("Scripts", required: false)). Dzięki komendzie poniżej możemy wsrzyknąć dodatkowy kod JS to tej sekcji *@
+@* Poniższy partial dodaje automatyczną walidację po stronie klienta *@
+
 @section Scripts {
-    @* Poniższy partial dodaje automatyczną walidację po stronie klienta *@
     <partial name="_ValidationScriptsPartial" />
 }
 
