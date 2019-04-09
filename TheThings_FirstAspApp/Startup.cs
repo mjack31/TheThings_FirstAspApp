@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -10,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using TheThings.Data;
 using TheThings.Data.Interfaces;
 
@@ -61,6 +63,15 @@ namespace TheThings_FirstAspApp
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            // servowanie bibliotek node_modules
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                Path.Combine(Directory.GetCurrentDirectory(), "node_modules")),
+                RequestPath = "/node_modules"
+            });
+
             app.UseCookiePolicy();
 
             app.UseMvc();

@@ -7,6 +7,15 @@
 <div class="" id="panel"></div>
 
 @section Scripts {
+<environment include="Development">
+    <script src="~/node_modules/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="~/node_modules/datatables.net-bs/js/dataTables.bootstrap.js"></script>
+    <link href="~/node_modules/datatables.net-bs/css/dataTables.bootstrap.css" rel="stylesheet" />
+</environment>
+    <environment exclude="Development">
+
+    </environment>
+
     <script>
         var fetchThings = () => {
             fetch("/api/things")
