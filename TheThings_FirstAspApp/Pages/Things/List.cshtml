@@ -18,12 +18,10 @@
 </form>
 
 <div>
-    <table class="table">
-        @foreach (var thing in Model.Things)
-        {
-            <partial name="_ListItem" model="thing" />
-        }
-    </table>
+    @foreach (var thing in Model.Things)
+    {
+        <partial name="_ListItem" model="thing" />
+    }
 </div>
 <div>
     <a class="btn btn-primary" asp-page="./Edit">Add thing!</a>

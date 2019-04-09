@@ -1,7 +1,41 @@
 ﻿@page
 @{
-    ViewData["Title"] = "ClientSideThings";
+    ViewData["Title"] = "Client Side Things - Fetched form API";
 }
 
-<h2>ClientSideThings</h2>
+<br />
+<div class="" id="panel"></div>
+
+@section Scripts {
+    <script>
+        var fetchThings = () => {
+            fetch("/api/things")
+                .then(res => {
+                    return res.json();
+                })
+                .then(res => {
+                    console.log(res);
+                    res.forEach(item => {
+                        var itemPanel = document.createElement("div");
+                        itemPanel.className = "panel panel-default";
+
+                        var itemPanelHeading = document.createElement("div");
+                        itemPanelHeading.className = "panel-heading";
+                        itemPanelHeading.innerHTML = `<h4>${item.name}</h4>`
+
+                        var itemPanelBody = document.createElement("div");
+                        itemPanelBody.className = "panel-body";
+                        itemPanelBody.innerHTML = `<p>${item.location}</p><p>${item.type}</p>`
+
+                        itemPanel.appendChild(itemPanelHeading);
+                        itemPanel.appendChild(itemPanelBody);
+
+                        document.querySelector("#panel").appendChild(itemPanel);
+                    })
+                })
+        }
+
+        fetchThings();
+    </script>
+}
 
