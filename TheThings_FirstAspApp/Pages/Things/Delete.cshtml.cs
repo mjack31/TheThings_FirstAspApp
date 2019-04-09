@@ -34,6 +34,7 @@ namespace TheThings_FirstAspApp.Pages.Things
         public IActionResult OnPost(int thingId)
         {
             var deletedThing = thingsRepository.Delete(thingId);
+            thingsRepository.SaveChanges();
             if(deletedThing == null)
             {
                 return RedirectToPage("./NotFound");

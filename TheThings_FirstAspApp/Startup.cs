@@ -32,7 +32,8 @@ namespace TheThings_FirstAspApp
                 opt.UseSqlServer(Configuration.GetConnectionString("TheThingsDb"));
             });
 
-            services.AddSingleton<IThingsRepository, DummyThingsService>();
+            services.AddScoped<IThingsRepository, DbThingsService>();
+            //services.AddSingleton<IThingsRepository, DummyThingsService>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {

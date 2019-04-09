@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace TheThings.Data
 {
-    class DbThingsService : IThingsRepository
+    public class DbThingsService : IThingsRepository
     {
         private readonly ThingsDbContext thingsDbContext;
 
@@ -24,7 +24,7 @@ namespace TheThings.Data
 
         public int CountThings()
         {
-            return thingsDbContext.SaveChanges();
+            return thingsDbContext.Things.Count();
         }
 
         public Thing Delete(int idToDelete)
@@ -39,22 +39,25 @@ namespace TheThings.Data
 
         public Thing GetById(int id)
         {
-            return thingsDbContext.Things.FirstOrDefault();
+            return thingsDbContext.Things.FirstOrDefault(t => t.Id == id);
         }
 
         public IEnumerable<Thing> GetByName(string name)
         {
-            throw new NotImplementedException();
+            // do każdej z chain metod trafia po kolei każdy element kolekcji. Jeżeli metoda zwraca true to element jest zwracany i dodawany do końcowego wyniku chaina
+            return thingsDbContext.Things.OrderBy(t => t.Name).Where(t => string.IsNullOrEmpty(name) || t.Name.Contains(name, StringComparison.OrdinalIgnoreCase));
         }
 
         public int SaveChanges()
         {
-            throw new NotImplementedException();
+            return thingsDbContext.SaveChanges();
         }
 
         public Thing Update(Thing updatedRestaurent)
         {
-            throw new NotImplementedException();
+            var thing = thingsDbContext.Things.Attach(updatedRestaurent);
+            thing.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            return updatedRestaurent;
         }
     }
 }
