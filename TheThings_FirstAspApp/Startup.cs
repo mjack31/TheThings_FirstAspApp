@@ -74,7 +74,25 @@ namespace TheThings_FirstAspApp
 
             app.UseCookiePolicy();
 
+            app.Use(CustomMiddleware1);
+            app.Use(CustomMiddleware2);
+
             app.UseMvc();
+        }
+
+        private Task CustomMiddleware1(HttpContext ctx, Func<Task> next)
+        {
+            Console.WriteLine("Middleware 1");
+            return next.Invoke();
+        }
+
+        private RequestDelegate CustomMiddleware2(RequestDelegate next)
+        {
+            return async ctx =>
+            {
+                Console.WriteLine("Middleware 2");
+                await next.Invoke(ctx);
+            };
         }
     }
 }
